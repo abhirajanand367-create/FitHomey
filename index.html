@@ -91,7 +91,21 @@
           </div>
         </div>
         <div class="form-group">
-          <label><i class="fas fa-running"></i> Activity Level</label>
+            <label><i class="fas fa-seedling"></i> Diet Preference</label>
+            <div class="diet-selector">
+              <div class="diet-option active" data-value="nonveg">
+                <i class="fas fa-drumstick-bite"></i>
+                <span>Non-Veg</span>
+              </div>
+              <div class="diet-option" data-value="veg">
+                <i class="fas fa-carrot"></i>
+                <span>Vegetarian</span>
+              </div>
+            </div>
+            <input type="hidden" id="dietType" value="nonveg">
+          </div>
+        <div class="form-group">
+            <label><i class="fas fa-running"></i> Activity Level</label>
           <div class="activity-selector">
             <div class="activity-option" data-value="low">
               <i class="fas fa-chair"></i>
@@ -195,11 +209,11 @@
       </div>
       <div class="plan-content" id="tab-diet">
         <div class="plan-card">
-          <h3><i class="fas fa-sun"></i> Meal Plan</h3>
+          <h3><i class="fas fa-sun"></i> Meal Plan <span class="diet-badge" id="dietBadge">🥟 Non-Vegetarian</span></h3>
           <div class="meal-grid" id="mealPlan"></div>
         </div>
         <div class="plan-card">
-          <h3><i class="fas fa-check-circle"></i> Foods to Eat</h3>
+          <h3><i class="fas fa-check-circle"></i> Foods to Eat <span class="diet-badge" id="foodsEatLabel" style="font-size:0.6rem;">🥩 Non-Vegetarian Options</span></h3>
           <div class="food-tags" id="foodsEat"></div>
         </div>
         <div class="plan-card">
@@ -259,13 +273,59 @@
           <p>Your AI-powered fitness companion.</p>
         </div>
         <div class="footer-links">
+          <button class="btn-secondary btn-small" id="notifBtn"><i class="fas fa-bell"></i> Reminders</button>
           <button class="btn-secondary btn-small" id="downloadReport"><i class="fas fa-download"></i> Download Report</button>
           <button class="btn-secondary btn-small" id="shareBtn"><i class="fas fa-share-alt"></i> Share</button>
         </div>
       </div>
-      <div class="footer-bottom">Made with ❤️ by KILKARI &copy; 2026 FITHOMEY. All rights reserved.</div>
+      <div class="footer-bottom">Made with ❤️ by ABHIRAJ &copy; 2026 FITHOMEY. All rights reserved.</div>
     </div>
   </footer>
+
+  <!-- NOTIFICATION SETTINGS MODAL -->
+  <div class="notif-modal" id="notifModal">
+    <div class="notif-modal-content">
+      <div class="notif-modal-header">
+        <h3><i class="fas fa-bell"></i> Smart Reminders</h3>
+        <button class="notif-close" id="notifClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="notif-modal-body">
+        <p class="notif-desc">Get browser notifications for water, sleep, and workout reminders.</p>
+        <label class="notif-toggle">
+          <input type="checkbox" id="notifEnable">
+          <span class="toggle-slider"></span>
+          Enable All Reminders
+        </label>
+        <div class="notif-option">
+          <label><i class="fas fa-bed"></i> Bedtime Reminder</label>
+          <span class="notif-time-display" id="notifBedtime">10:00 PM</span>
+        </div>
+        <div class="notif-option">
+          <label><i class="fas fa-sun"></i> Wake Up Reminder</label>
+          <span class="notif-time-display" id="notifWakeup">6:00 AM</span>
+        </div>
+        <div class="notif-option">
+          <label><i class="fas fa-dumbbell"></i> Workout Reminder</label>
+          <div class="notif-time-picker">
+            <select id="notifWorkoutHour"></select>
+            <span>:</span>
+            <select id="notifWorkoutMin"></select>
+          </div>
+        </div>
+        <div class="notif-option">
+          <label><i class="fas fa-tint"></i> Water Reminder (every)</label>
+          <select id="notifWaterInterval">
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60" selected>60 min</option>
+            <option value="90">90 min</option>
+          </select>
+        </div>
+        <button class="btn-primary btn-full" id="notifSaveBtn"><i class="fas fa-save"></i> Save Reminder Settings</button>
+        <p class="notif-status" id="notifStatus"></p>
+      </div>
+    </div>
+  </div>
 
   <!-- AI CHATBOT COACH -->
   <div class="chatbot-btn" id="chatbotBtn">
