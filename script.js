@@ -35,6 +35,17 @@
     document.querySelector('.navbar').style.animation = 'slideDown 0.5s cubic-bezier(0.34,1.56,0.64,1) both';
   });
 
+  // ===== SCROLL TO TOP =====
+  var scrollTopBtn = $('scrollTopBtn');
+  if (scrollTopBtn) {
+    window.addEventListener('scroll', function() {
+      scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+    });
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   // ===== NAVIGATION =====
   navToggle && navToggle.addEventListener('click', function() {
     navLinks.classList.toggle('open');
