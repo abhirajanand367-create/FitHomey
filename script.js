@@ -833,9 +833,9 @@
       var e = baseEat.slice(), a = baseAvoid.slice();
       var nvIndicators = ['🐟','🥩','🍗'];
       if (o.isVeg) {
-        e = e.filter(function(x){ return nvIndicators.every(function(n){ return x.indexOf(n)===-1); }); });
+        e = e.filter(function(x){ return nvIndicators.every(function(n){ return x.indexOf(n)===-1; }); });
         ['🧀 Paneer','🫘 Tofu','🌱 Plant Protein','🥛 Greek Yogurt'].forEach(function(f){ if(e.indexOf(f)===-1) e.push(f); });
-        a = a.filter(function(x){ return nvIndicators.every(function(n){ return x.indexOf(n)===-1); }); });
+        a = a.filter(function(x){ return nvIndicators.every(function(n){ return x.indexOf(n)===-1; }); });
       } else if (o.isBoth) {
         // Keep all items (veg + non-veg), add extras from both categories
         ['🧀 Paneer','🫘 Tofu','🥛 Greek Yogurt','🥚 Eggs','🍗 Chicken Breast','🐟 Fish'].forEach(function(f){ if(e.indexOf(f)===-1) e.push(f); });
