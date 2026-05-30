@@ -316,6 +316,7 @@
         '<span class="badge-name">' + b.name + '</span>' +
         '<span class="badge-desc">' + b.desc + '</span></div>';
     }).join('');
+  }
 
   // ===== PLAN TABS =====
   document.querySelectorAll('.plan-tab').forEach(function(tab) {
