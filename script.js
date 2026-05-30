@@ -623,11 +623,40 @@
     }
     function renderWorkoutItem(text) {
       var src = exerciseGif(text);
-      return '<div class="workout-item"><div class="workout-gif-wrap">' +
+      return '<div class="workout-item" data-gif="' + (src || '') + '" data-exercise="' + text.replace(/"/g,'&quot;') + '"><div class="workout-gif-wrap">' +
         (src ? '<img class="workout-gif" src="' + src + '" alt="" loading="lazy">' :
          '<div class="workout-gif workout-gif-placeholder">🏋️</div>') +
         '</div><span class="workout-text">' + text + '</span></div>';
     }
+
+    // ===== FULLSCREEN WORKOUT OVERLAY =====
+    var workoutOverlay = document.createElement('div');
+    workoutOverlay.className = 'workout-overlay';
+    workoutOverlay.innerHTML = '<div class="workout-overlay-bg"></div><div class="workout-overlay-content"><button class="workout-overlay-close">&times;</button><div class="workout-overlay-gif-wrap"><img class="workout-overlay-gif" src="" alt=""></div><h3 class="workout-overlay-title"></h3><p class="workout-overlay-desc"></p></div>';
+    document.body.appendChild(workoutOverlay);
+    function openWorkoutFullscreen(gifSrc, exercise) {
+      var img = workoutOverlay.querySelector('.workout-overlay-gif');
+      img.src = gifSrc || '';
+      workoutOverlay.querySelector('.workout-overlay-title').textContent = exercise.replace(/\s*\(.*?\)\s*/g,' ').trim();
+      workoutOverlay.querySelector('.workout-overlay-desc').textContent = exercise;
+      workoutOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeWorkoutOverlay() {
+      workoutOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    workoutOverlay.querySelector('.workout-overlay-close').addEventListener('click', closeWorkoutOverlay);
+    workoutOverlay.querySelector('.workout-overlay-bg').addEventListener('click', closeWorkoutOverlay);
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeWorkoutOverlay(); });
+    document.addEventListener('click', function(e) {
+      var item = e.target.closest('.workout-item');
+      if (item) {
+        var gif = item.getAttribute('data-gif');
+        var ex = item.getAttribute('data-exercise');
+        if (ex) openWorkoutFullscreen(gif, ex);
+      }
+    });
 
     // ===== HOME WORKOUT =====
     var menstruationPool = ['Gentle Yoga Stretch (15 min)','Deep Breathing (5 min)','Pelvic Tilts (3x12)','Cat-Cow Stretch (10 reps)','Child\'s Pose Hold (2 min)','Light Walking (15 min)','Seated Spinal Twist (30s each)','Legs-Up-The-Wall (5 min)','Knee-to-Chest Stretch (30s each)','Supine Twist (30s each)','Happy Baby Pose (30s)','Butterfly Stretch (30s)','Neck Rolls (30s each)','Shoulder Rolls (20 reps)','Ankle Rotations (20 each)','Wrist Stretches (30s each)','Foam Rolling Lower Back (5 min)','Corpse Pose (5 min)','Standing Forward Bend (30s)','Side Bends (30s each)','Gentle Hip Circles (30s each)','Seated Forward Fold (30s)','Cobra Stretch (30s)','Sphinx Pose (30s)','Supine Hamstring Stretch (30s each)'];
