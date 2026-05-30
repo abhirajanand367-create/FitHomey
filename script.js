@@ -602,19 +602,46 @@
       }
     };
 
+    // ===== EXERCISE GIF MAP =====
+    var gifMap = {
+      'jumping jacks':'RgtuKqJ8rPII4qdRjp','high knees':'PSn1x0R2Hqg3kComAK','burpees':'KxuGSIZU1QZfRiRx4h','mountain climbers':'VzlPEkuoqlgjehxvxk','plank jacks':'SJWtWnRFsTiNVSECVP','bicycle crunches':'oVdkHpQifYD5BQYpFK','squat jumps':'xUA7b7eul73i4xfzP2','push-ups':'5NW0ZOZT2LyY9YPay4','lunges':'McCvW7U8BX3QB3PXAg','walking lunges':'xT0xeD7gan8YgJWbwk','tuck jumps':'3o6EhPQ79zytoRdB9m','box jumps':'1cwHYKZHaqdkDCexmM','flutter kicks':'cI9PSDuenPWiAgSKeN','heisman shuffle':'VAW6QUfFPs3atM4Tfw','speed skaters':'eMxJsG1LAljDZ30JsS','plank with shoulder taps':'8rBSSKtPAq4qayRV2R','bodyweight squats':'r0WOepedKqxNjS3zM0','glute bridges':'7EeEk7QIUVKbV5RWzn','crunches':'TMNCtgJGJnV8k','calf raises':'XEDNpGzZ8IXhBRqfwS','diamond push-ups':'srOogZJmCOFkymR1jo','step-ups':'GCfe8FEQQ3akJ5REmL','tricep dips':'562vRn4PXFkm8EcJwb','wall sit':'wiRXDJkS5rcMQ2oSJG','incline push-ups':'MZuko9ynczcnmms70g','chair dips':'ojAEX7tsnRTsg6EY1O','brisk walking':'idLmS5DVmSPh6wHg64','plank':'CLjw2mHysNEYw','standing calf raises':'vyRlKcBaxQ2y9Lz1MS','seated leg raises':'1FsjYEOIEXQTosCu9T','wall push-ups':'TxSCql3N1RYDSJmXsJ','marching in place':'lSPsP2wU1GyImjFkcN','heel raises':'vyRlKcBaxQ2y9Lz1MS','cat-cow stretch':'fXtFCiwt9JNEfPqTzf','arm circles':'z0JWDAyS0hJsjrDxuV','knee push-ups':'cVSWGfQhD2T8WmNTek','side leg raises':'WRjJy7B19Tint5tUqB','yoga flow':'7rUbZWomwdhWmQVWoY','child\'s pose':'MZpWm4Z9XQWbwVMGky','seated twist':'heSg6nPS3UHVzWGuxP','butterfly stretch':'Ld6CUI3vZMYibdvD8t','bird dog':'3o7TKUtNvbq1puN65W','side plank':'PmXe3jP2CHqJyFwEHm','cobra stretch':'Z3uwVAFDiEAcWMP7vw','donkey kicks':'zsiBpbozNyn2RihxzW','bulgarian split squats':'3mgBYwj3yju1Uqd4R6','pistol squats':'ayySCHL3QGtUpYEPJD','archer push-ups':'1de6rGOlBQAE5E2V5o','single-leg deadlift':'RILEhMJUV5kovP6ffi','dragon flags':'s0sMRBJcrYavt7qloH','jump lunges':'sz2uAAG1KGsYvkHYUI','clapping push-ups':'HH6d8MPCatIDIF2OLA','l-sit hold':'59DLVjZKtAqQZI0UTG','squat pulses':'P6Q7qAdAbrlXTJ488T','push-up hold':'61luzjYFmQyHTO822Y','tabletop rows':'dT4aimDfMS5sDh7uG4','superman hold':'hNng9AOyUHxvPiCUiv','bridge pose':'XuD3044h1SvgGXyYLq','wall angels':'KxsUEz603HDEx347x7','dead hang':'t6G4bFfrm2buzRLAT9','spinal twist':'QVm4ZZw8cCsjVYfJFY','standing side bends':'Wwn5NKv4At2CIc8XQa','seated forward fold':'2tVKdyhY1v7oY','happy baby pose':'HDeOMFNTx8LPfWAxEZ','supine twist':'u44fSKx3ZcW5Rz3UWP','knee-to-chest':'ChVvEpz62GOA1y79Ij','corpse pose':'SYLAi0s9cD2wQFYlfp','gentle hip circles':'BWvrfSGW1zgdkaHpnW','sphinx pose':'w3pp6wiVIXE0o','supine hamstring stretch':'wykGOmmbcMUoQ8wW5X','pelvic tilts':'7r0zNF9WglVqtVDfTV','seated spinal twist':'Cs9EvHTM4EHz1uulmv','standing forward bend':'8Soaa1LE7A4bPec3JR','side bends':'HwFdMdIGm0hk7k13jn','foam rolling':'xT1R9URsjHLFAuPrW0','legs-up-the-wall':'e7JPrne4koRdBXzFnW','mountain pose':'9Dm0f5dEtra3a5ginX','treadmill':'ejJdy1TALOfh0mu09I','deadlift':'qNj41KxhsoiQ0','leg press':'xT6wBg4cxNkf6','lat pulldown':'JZeYUA1uJCzXcR30IS','cable row':'giKmFZqdd3YEuJYIuW','dumbbell bench press':'D1MI5cm31xkGS5aHMB','hiit finisher':'ilkluSJhjgYitwQL7P','cable crunch':'0q2SfWNBGimPQdeOYg','battle ropes':'HlOlONJ0V30l7nBiAm','kettlebell swings':'3oEjHHYOTZeHjzLLOg','farmers walk':'3oKIPz1pK2Mg42bUk0','rowing machine':'26DMTbM0OAxbdPiYo','bench press':'h24Y1pZIGKXzG','barbell row':'RYqGuMl33SK9WIl0TD','overhead press':'SieD4F7finpC5Bdal5','pull-ups':'14xa1F3aatkNhK','bicep curls':'GbWf0u65MHCIU','dumbbell fly':'zBvSThvnE0Cj2ikfTC','tricep pushdown':'orZ35jCdlD8VkSb30U','face pulls':'vw6cHB4JBg2BV7XqPA','hammer curls':'EWfDfF3QuN8qonE6Gu','chest fly':'c46jqZMonizaOsJqjW','shrugs':'ma7VlDSlty3EA','squats':'VlSzI3FVJWVmE','seated cable row':'0mhHK2Tkcxxf2mwaR6','chest press machine':'z1Suqc2f0GCPReDgUB','stationary bike':'gk32Uq0C1CnLDDj2XT','elliptical':'aDJk6E9nfixXKCn8Np','hip abductor':'kgsmPlBO8mC477wOGr','shoulder press machine':'gIxeFoOB3xBEeviCn8','seated leg curl':'xZGFptusyerP3GETnz','back extension':'VPByqa8IPNAZm26neB','hip thrust':'DgzKulDIBDc88','dumbbell shoulder press':'beghpIfkKFCVUojc7E','glute kickbacks':'DVGuSkMqsyTW76ignD','seated chest press':'z1Suqc2f0GCPReDgUB','cable bicep curl':'e2FAiqJcnGgEwjNSJJ','goblet squats':'LmTL0l4HaERFJlEVnz','dumbbell rdl':'uLEIRpuHd1GJnbkz6S','leg extension':'rnvGRog1qklLALH9F8','stair climber':'Y050ILs8pXZjW','seated dip machine':'aTNrgrhh2TUMQ002EV','incline bench':'jLFMDwtmRBrTQVVIDH','weighted dips':'mIQLVtum2WW56uuOmH','front squat':'O1TWaCoEj6lwuWtvo2','pendlay row':'H2dmCtNyFoJZS','clean press':'pQ5qPAB60piUl8yWD6','rack pulls':'l0HlCqV35hdEg2GUo','chin-ups':'YOpsFZl8opCY7ogNs5','romanian deadlift':'1wmbkQCVu8Olnq4fmE','cable kickbacks':'K25PVRA032Ues','lateral raises':'rmlERmsODCF0l13Sqe','dumbbell lunges':'l3V0h4JTNhK8rzV6g','cable pullovers':'K25PVRA032Ues','hanging leg raises':'1FsjYEOIEXQTosCu9T','assisted pull-ups':'wYBE0UtaMjZDGfGcJv','kettlebell swing':'2mIVelSCJhznbkHzFq','seated calf raise':'E0ubpVelrEv5e0Maru','leg curl machine':'DJaIIKd3KLM4NfLaFn','dumbbell row':'3oEjHM9hzerMdVjYWI','cable crossovers':'iBaNPEji5eYCJMDe4b','dumbbell press':'3oEjHM9hzerMdVjYWI','hip abductor machine':'kgsmPlBO8mC477wOGr','hip adductor':'kgsmPlBO8mC477wOGr','light walking':'idLmS5DVmSPh6wHg64','light deadlifts':'qNj41KxhsoiQ0','light dumbbell press':'beghpIfkKFCVUojc7E','dead hang from pull-up bar':'t6G4bFfrm2buzRLAT9'
+    };
+    function exerciseGif(exerciseName) {
+      var key = exerciseName.toLowerCase().replace(/\(.*?\)/g,'').replace(/[0-9]/g,'').replace(/[×x]/g,'').trim();
+      var id = gifMap[key];
+      if (!id) {
+        for (var k in gifMap) {
+          if (key.indexOf(k) !== -1) { id = gifMap[k]; break; }
+          var kw = k.split(' ');
+          if (kw.length > 2) { var match = true;
+            for (var wi = 0; wi < kw.length; wi++) { if (key.indexOf(kw[wi]) === -1) { match = false; break; } }
+            if (match) { id = gifMap[k]; break; }
+          }
+        }
+      }
+      return id ? 'https://media.giphy.com/media/' + id + '/giphy.gif' : '';
+    }
+    function renderWorkoutItem(text) {
+      var src = exerciseGif(text);
+      return '<div class="workout-item"><div class="workout-gif-wrap">' +
+        (src ? '<img class="workout-gif" src="' + src + '" alt="" loading="lazy">' :
+         '<div class="workout-gif workout-gif-placeholder">🏋️</div>') +
+        '</div><span class="workout-text">' + text + '</span></div>';
+    }
+
     // ===== HOME WORKOUT =====
     var menstruationPool = ['Gentle Yoga Stretch (15 min)','Deep Breathing (5 min)','Pelvic Tilts (3x12)','Cat-Cow Stretch (10 reps)','Child\'s Pose Hold (2 min)','Light Walking (15 min)','Seated Spinal Twist (30s each)','Legs-Up-The-Wall (5 min)','Knee-to-Chest Stretch (30s each)','Supine Twist (30s each)','Happy Baby Pose (30s)','Butterfly Stretch (30s)','Neck Rolls (30s each)','Shoulder Rolls (20 reps)','Ankle Rotations (20 each)','Wrist Stretches (30s each)','Foam Rolling Lower Back (5 min)','Corpse Pose (5 min)','Standing Forward Bend (30s)','Side Bends (30s each)','Gentle Hip Circles (30s each)','Seated Forward Fold (30s)','Cobra Stretch (30s)','Sphinx Pose (30s)','Supine Hamstring Stretch (30s each)'];
     if (isMenstruating) {
-      var homeEx = pick(7, menstruationPool);
-      var homeEl = $('homeWorkoutList'); if (homeEl) homeEl.innerHTML = homeEx.map(function(e) { return '<li>' + e + '</li>'; }).join('');
-      var gymEx = pick(7, menstruationPool);
-      var gymEl = $('gymWorkoutList'); if (gymEl) gymEl.innerHTML = gymEx.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+      var homeEx = pick(5, menstruationPool);
+      var homeEl = $('homeWorkoutList'); if (homeEl) homeEl.innerHTML = homeEx.map(function(e) { return renderWorkoutItem(e); }).join('');
+      var gymEx = pick(5, menstruationPool);
+      var gymEl = $('gymWorkoutList'); if (gymEl) gymEl.innerHTML = gymEx.map(function(e) { return renderWorkoutItem(e); }).join('');
     } else if (problem !== 'general' && problemData[problem]) {
       var pd = problemData[problem];
-      var pHome = pick(7, pd.home);
-      var homeEl = $('homeWorkoutList'); if (homeEl) homeEl.innerHTML = pHome.map(function(e) { return '<li>' + e + '</li>'; }).join('');
-      var pGym = pick(7, pd.gym);
-      var gymEl = $('gymWorkoutList'); if (gymEl) gymEl.innerHTML = pGym.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+      var pHome = pick(5, pd.home);
+      var homeEl = $('homeWorkoutList'); if (homeEl) homeEl.innerHTML = pHome.map(function(e) { return renderWorkoutItem(e); }).join('');
+      var pGym = pick(5, pd.gym);
+      var gymEl = $('gymWorkoutList'); if (gymEl) gymEl.innerHTML = pGym.map(function(e) { return renderWorkoutItem(e); }).join('');
     } else {
       var homePools = {
         seniorYoung: ['Brisk Walking (20 min)','Bodyweight Squats (3x10)','Wall Push-ups (3x10)','Seated Leg Raises (3x12)','Standing Calf Raises (3x15)','Cat-Cow Stretch (10 reps)','Arm Circles (30s each)','Chair Dips (3x10)','Marching in Place (3x30s)','Knee Push-ups (3x8)','Bird Dog (3x8 each)','Heel Raises (3x15)','Side Leg Raises (3x10 each)','Seated Twist (10 each)','Toe Touches (3x10)'],
@@ -629,8 +656,8 @@
       else if (isActive && isAdult) homePool = homePools.activeAdult;
       else if (isUnderweight) homePool = homePools.underweight;
       else homePool = homePools.normal;
-      var homeEx = pick(7, homePool);
-      var homeEl = $('homeWorkoutList'); if (homeEl) homeEl.innerHTML = homeEx.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+      var homeEx = pick(5, homePool);
+      var homeEl = $('homeWorkoutList'); if (homeEl) homeEl.innerHTML = homeEx.map(function(e) { return renderWorkoutItem(e); }).join('');
     }
 
     // --- GYM WORKOUT ---
@@ -652,8 +679,8 @@
       else if (isActive && isAdult) gymPool = isMale ? gymPools.activeMale : gymPools.activeFemale;
       else if (isUnderweight) gymPool = isMale ? gymPools.underweightMale : gymPools.underweightFemale;
       else gymPool = gymPools.normal;
-      var gymEx = pick(7, gymPool);
-      var gymEl = $('gymWorkoutList'); if (gymEl) gymEl.innerHTML = gymEx.map(function(e) { return '<li>' + e + '</li>'; }).join('');
+      var gymEx = pick(5, gymPool);
+      var gymEl = $('gymWorkoutList'); if (gymEl) gymEl.innerHTML = gymEx.map(function(e) { return renderWorkoutItem(e); }).join('');
     }
 
     // --- MEAL PLAN ---
