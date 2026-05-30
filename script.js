@@ -30,8 +30,20 @@
   var downloadBtn = $('downloadReport');
   var shareBtn = $('shareBtn');
 
+  // ===== PAGE-LOAD ENTRANCE =====
+  window.addEventListener('load', function() {
+    document.querySelector('.navbar').style.animation = 'slideDown 0.5s cubic-bezier(0.34,1.56,0.64,1) both';
+  });
+
   // ===== NAVIGATION =====
-  navToggle && navToggle.addEventListener('click', function() { navLinks.classList.toggle('open'); });
+  navToggle && navToggle.addEventListener('click', function() {
+    navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
+    var icon = navToggle.querySelector('i');
+    if (icon) {
+      icon.className = navLinks.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
+    }
+  });
   var navLinksList = document.querySelectorAll('.nav-links a');
   navLinksList.forEach(function(a) { a.addEventListener('click', function() { navLinks.classList.remove('open'); }); });
 
@@ -55,8 +67,19 @@
     }
   });
 
-  // ===== BUTTON RIPPLE EFFECT =====
-  document.querySelectorAll('.btn-ripple').forEach(function(btn) {
+  // ===== CURSOR GLOW TRAIL =====
+  var cursorGlow = document.createElement('div');
+  cursorGlow.className = 'cursor-glow';
+  document.body.appendChild(cursorGlow);
+  document.addEventListener('mousemove', function(e) {
+    cursorGlow.style.left = e.clientX + 'px';
+    cursorGlow.style.top = e.clientY + 'px';
+  });
+  document.addEventListener('mouseenter', function() { cursorGlow.style.opacity = '1'; });
+  document.addEventListener('mouseleave', function() { cursorGlow.style.opacity = '0'; });
+
+  // ===== BUTTON RIPPLE EFFECT (ALL BUTTONS) =====
+  document.querySelectorAll('.btn-primary, .btn-secondary, .btn-ripple').forEach(function(btn) {
     btn.addEventListener('click', function(e) {
       var rect = btn.getBoundingClientRect();
       var ripple = document.createElement('span');
@@ -72,6 +95,7 @@
 
   // ===== INTERSECTION OBSERVER FOR REVEAL ANIMATIONS =====
   var revealElements = document.querySelectorAll('.reveal');
+  var allObservers = [];
   if (revealElements.length) {
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
@@ -82,6 +106,31 @@
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
     revealElements.forEach(function(el) { observer.observe(el); });
+    allObservers.push(observer);
+  }
+
+  // ===== STAGGER-CHILD REVEAL =====
+  var staggerEls = document.querySelectorAll('.reveal-stagger');
+  if (staggerEls.length) {
+    var staggerObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          staggerObs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    staggerEls.forEach(function(el) { staggerObs.observe(el); });
+    allObservers.push(staggerObs);
+  }
+
+  // ===== PARALLAX HERO SHAPES ON SCROLL =====
+  var heroShapes = document.querySelector('.hero-shapes');
+  if (heroShapes) {
+    window.addEventListener('scroll', function() {
+      var scrollY = window.scrollY;
+      heroShapes.style.transform = 'translateY(' + (scrollY * 0.15) + 'px)';
+    });
   }
 
   // ===== DIET SELECTOR (PRO) =====
