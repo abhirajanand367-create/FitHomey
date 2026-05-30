@@ -333,10 +333,63 @@
   }
 
   // ===== EXERCISE GIF MAP =====
-  var gifMap = {'push ups':'5NW0ZOZT2LyY9YPay4','push-ups':'5NW0ZOZT2LyY9YPay4','press ups':'5NW0ZOZT2LyY9YPay4','squats':'r0WOepedKqxNjS3zM0','lunges':'xT0xeD7gan8YgJWbwk','plank':'CLjw2mHysNEYw','side plank':'PmXe3jP2CHqJyFwEHm','burpees':'Fm0PJWfYb7yGQ','jumping jacks':'Io0dYFnSJbQ9S','high knees':'z6kYryKTMm8Dq','mountain climbers':'3og0IMRZ5wWOzGH4NW','crunches':'TMNCtgJGJnV8k','bicycle crunches':'bSCV41t10bXjO','leg raises':'1FsjYEOIEXQTosCu9T','glute bridges':'7EeEk7QIUVKbV5RWzn','diamond push ups':'srOogZJmCOFkymR1jo','tricep dips':'562vRn4PXFkm8EcJwb','chair dips':'ojAEX7tsnRTsg6EY1O','walking':'idLmS5DVmSPh6wHg64','brisk walking':'idLmS5DVmSPh6wHg64','arm circles':'z0JWDAyS0hJsjrDxuV','calf raises':'XEDNpGzZ8IXhBRqfwS','jump squats':'xUA7b7eul73i4xfzP2','cat cow':'fXtFCiwt9JNEfPqTzf','childs pose':'MZpWm4Z9XQWbwVMGky','seated twist':'heSg6nPS3UHVzWGuxP','butterfly stretch':'Ld6CUI3vZMYibdvD8t','yoga':'7rUbZWomwdhWmQVWoY','stretching':'7rUbZWomwdhWmQVWoY','cobra stretch':'Z3uwVAFDiEAcWMP7vw','bird dog':'3o7TKUtNvbq1puN65W','tuck jumps':'3o6EhPQ79zytoRdB9m','box jumps':'1cwHYKZHaqdkDCexmM','flutter kicks':'cI9PSDuenPWiAgSKeN','donkey kicks':'zsiBpbozNyn2RihxzW','step ups':'GCfe8FEQQ3akJ5REmL','wall sit':'wiRXDJkS5rcMQ2oSJG','incline push ups':'MZuko9ynczcnmms70g','split squats':'3mgBYwj3yju1Uqd4R6'};
+  var gifMap = {
+    'push ups':'5NW0ZOZT2LyY9YPay4','push-ups':'5NW0ZOZT2LyY9YPay4','press ups':'5NW0ZOZT2LyY9YPay4',
+    'squats':'r0WOepedKqxNjS3zM0','squat':'VlSzI3FVJWVmE',
+    'lunges':'xT0xeD7gan8YgJWbwk','lunge':'xT0xeD7gan8YgJWbwk',
+    'plank':'CLjw2mHysNEYw','side plank':'PmXe3jP2CHqJyFwEHm',
+    'burpees':'Fm0PJWfYb7yGQ','jumping jacks':'Io0dYFnSJbQ9S',
+    'high knees':'z6kYryKTMm8Dq','mountain climbers':'3og0IMRZ5wWOzGH4NW',
+    'crunches':'TMNCtgJGJnV8k','bicycle crunches':'bSCV41t10bXjO',
+    'leg raises':'1FsjYEOIEXQTosCu9T','glute bridges':'7EeEk7QIUVKbV5RWzn',
+    'diamond push ups':'srOogZJmCOFkymR1jo','tricep dips':'562vRn4PXFkm8EcJwb',
+    'chair dips':'ojAEX7tsnRTsg6EY1O',
+    'walking':'idLmS5DVmSPh6wHg64',
+    'arm circles':'z0JWDAyS0hJsjrDxuV','calf raises':'XEDNpGzZ8IXhBRqfwS',
+    'jump squats':'xUA7b7eul73i4xfzP2',
+    'cat cow':'fXtFCiwt9JNEfPqTzf','childs pose':'MZpWm4Z9XQWbwVMGky',
+    'seated twist':'heSg6nPS3UHVzWGuxP','butterfly stretch':'Ld6CUI3vZMYibdvD8t',
+    'yoga':'7rUbZWomwdhWmQVWoY','stretching':'7rUbZWomwdhWmQVWoY',
+    'cobra stretch':'Z3uwVAFDiEAcWMP7vw','bird dog':'3o7TKUtNvbq1puN65W',
+    'tuck jumps':'3o6EhPQ79zytoRdB9m','box jumps':'1cwHYKZHaqdkDCexmM',
+    'flutter kicks':'cI9PSDuenPWiAgSKeN','donkey kicks':'zsiBpbozNyn2RihxzW',
+    'step ups':'GCfe8FEQQ3akJ5REmL','wall sit':'wiRXDJkS5rcMQ2oSJG',
+    'incline push ups':'MZuko9ynczcnmms70g','split squats':'3mgBYwj3yju1Uqd4R6',
+    'bench press':'NLuFwZieDxvws','deadlift':'xHCnuIh3Sz4s',
+    'barbell row':'3o6ZsYzuLyRfSGX4f6','leg press':'LSzySnRWyM5tzFZtXf',
+    'lat pulldown':'qNj41KxhsoiQ0','tricep pushdown':'3o6ZsYzuLyRfSGX4f6',
+    'bicep curl':'3oriNZNU6VDrDxM7sI','cable face pull':'3o6ZsYzuLyRfSGX4f6',
+    'overhead press':'uW79O9war7oViqguMh','kettlebell swing':'pQxWu5fcuVsrK',
+    'rowing machine':'idLmS5DVmSPh6wHg64','rowing':'idLmS5DVmSPh6wHg64',
+    'treadmill hiit':'h24Y1pZIGKXzG','treadmill':'h24Y1pZIGKXzG',
+    'seated cable row':'qNj41KxhsoiQ0','cable crunch':'qNj41KxhsoiQ0',
+    'elliptical':'Io0dYFnSJbQ9S','plank jacks':'CLjw2mHysNEYw',
+    'jump squats on box':'xUA7b7eul73i4xfzP2'
+  };
+  var defaultGif = '3o7btMPzJrsdyWVHeo';
   function normalizeKey(s){return s.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim().replace(/\s+/g,' ')}
-  function exerciseGif(exerciseName){var k=normalizeKey(exerciseName.replace(/\(.*?\)/g,''));if(gifMap[k])return gifMap[k];var kf=k.replace(/\s+/g,'');for(var x in gifMap){var m=normalizeKey(x).replace(/\s+/g,'');if(kf.indexOf(m)!==-1||m.indexOf(kf)!==-1)return gifMap[x]}var w=k.split(' ');for(var i=0;i<w.length;i++){if(gifMap[w[i]])return gifMap[w[i]]}return'3o7btMPzJrsdyWVHeo'}
-  function renderWorkoutItem(text){var id=exerciseGif(text);var s='https://media.giphy.com/media/'+id+'/giphy.gif';return '<div class="workout-item"><div class="workout-gif-wrap"><img class="workout-gif" src="'+s+'" alt="'+text.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=\\\\\\"workout-gif-placeholder\\\\\\"><i class=\\\\\\"fas fa-dumbbell\\\\\\"></i></div>\'"></div><span class="workout-text">'+text+'</span></div>'}
+  function exerciseGif(exerciseName){
+    var k=normalizeKey(exerciseName.replace(/\(.*?\)/g,''));
+    if(gifMap[k]) return gifMap[k];
+    var kf=k.replace(/\s+/g,'');
+    for(var x in gifMap){var m=normalizeKey(x).replace(/\s+/g,'');if(kf.indexOf(m)!==-1||m.indexOf(kf)!==-1)return gifMap[x]}
+    return defaultGif;
+  }
+  function renderWorkoutItem(text){
+    var id=exerciseGif(text);
+    var s='https://media.giphy.com/media/'+id+'/giphy.gif';
+    return '<div class="workout-item" data-gif="'+s+'" data-exercise="'+text.replace(/"/g,'&quot;')+'"><div class="workout-gif-wrap"><img class="workout-gif" src="'+s+'" alt="'+text.replace(/"/g,'&quot;')+'" loading="lazy"></div><span class="workout-text">'+text+'</span></div>';
+  }
+  // GIF error handler via event delegation (avoid broken onerror escaping)
+  document.addEventListener('error', function(e) {
+    if (e.target.classList.contains('workout-gif')) {
+      e.target.style.display = 'none';
+      var ph = document.createElement('div');
+      ph.className = 'workout-gif-placeholder';
+      ph.innerHTML = '<i class="fas fa-dumbbell"></i>';
+      e.target.parentNode.appendChild(ph);
+    }
+  }, true);
 
   // ===== BADGE HELPER =====
   function unlockBadge(key){if(userBadges.indexOf(key)===-1){userBadges.push(key);safeSet('fithomey_badges',JSON.stringify(userBadges));renderBadges()}}
@@ -1324,6 +1377,31 @@
   if (initialSettings.notifsEnabled) {
     requestNotifPermission();
   }
+
+  // ===== WORKOUT GIF FULLSCREEN VIEWER =====
+  var wOverlay = $('workoutOverlay');
+  var wImg = $('workoutOverlayImg');
+  var wName = $('workoutOverlayName');
+  var wClose = $('workoutOverlayClose');
+  document.addEventListener('click', function(e) {
+    var item = e.target.closest('.workout-item');
+    if (item && item.dataset.gif) {
+      wImg.src = item.dataset.gif;
+      wName.textContent = item.dataset.exercise || '';
+      wOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+  if (wClose) wClose.addEventListener('click', function() {
+    wOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  if (wOverlay) wOverlay.addEventListener('click', function(e) {
+    if (e.target === wOverlay || e.target.classList.contains('workout-overlay-bg')) {
+      wOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
 
   // ===== COUNTER ANIMATION UTILITY =====
   function animateCounters(bmiVal, calVal, watVal, fitVal, bmi, tdee, water, score) {
