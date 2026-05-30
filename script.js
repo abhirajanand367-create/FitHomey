@@ -261,6 +261,37 @@
   }
 
   // ===== ANALYZE =====
+  function analyze() {
+    var o = getInputs();
+    var hm = o.height/100, bmi = Math.round(o.weight/(hm*hm)*10)/10;
+    var bmr = o.gender==='male'?10*o.weight+6.25*o.height-5*o.age+5:o.gender==='female'?10*o.weight+6.25*o.height-5*o.age-161:10*o.weight+6.25*o.height-5*o.age-78;
+    var tdee = Math.round(bmr*({low:1.2,medium:1.55,high:1.9}[o.activity]||1.55));
+    var water = Math.round(o.weight*0.033*10)/10;
+    var bmiScore = bmi>=18.5&&bmi<25?30:Math.max(0,30-Math.abs(bmi-21.5)*3);
+    var actScore = {low:15,medium:25,high:35}[o.activity]||25;
+    var probScore = {general:25,weight_loss:20,weight_gain:20,diabetes:15,pcod:15,thyroid:17,high_bp:15,cholesterol:17,joint_pain:15,digestive:15,anemia:15,heart:15,liver:15,kidney:15,stress:18,skin_hair:18,height_increase:20}[o.problem]||20;
+    var score = Math.min(100,Math.max(10,bmiScore+actScore+(o.age<30?10:o.age<45?8:o.age<60?6:4)+probScore-10));
+    var bmiCat = bmi<18.5?'Underweight':bmi<25?'Normal':bmi<30?'Overweight':'Obese';
+    var fitLevel = score>=80?'Excellent':score>=60?'Good':score>=40?'Average':'Needs Improvement';
+    var riskLvl = bmi>=30||score<30?'High Risk':bmi>=25||score<50?'Medium Risk':'Low Risk';
+    var riskMsg = riskLvl==='Low Risk'?'You are in a healthy range. Keep up the good work!':riskLvl==='Medium Risk'?'Some areas need attention. Follow your personalized plan.':'Please consult a healthcare professional. Your plan can help.';
+    safeSet('fithomey_profile',JSON.stringify({age:o.age,height:o.height,weight:o.weight,gender:o.gender,activity:o.activity,diet:o.diet,menstruation:o.menstruation,problem:o.problem,bmi:bmi,tdee:tdee,water:water,score:score,riskLevel:riskLvl,bmiCat:bmiCat}));
+    unlockBadge('fitpro');
+    dashboardSec.style.display='block';planSec.style.display='block';
+    setTimeout(function(){dashboardSec.classList.add('visible');planSec.classList.add('visible')},50);
+    var be=$('bmiValue'),bc=$('bmiCategory'),bp=$('bmiProgress'),ce=$('calorieValue'),we=$('waterValue'),wp=$('waterProgress'),fe=$('fitnessScore'),fl=$('fitnessLevel'),fp=$('fitnessProgress');
+    if(be)be.textContent='0';if(bc)bc.textContent=bmiCat;if(ce)ce.textContent='0';if(we)we.textContent='0.0';if(fe)fe.textContent='0';if(fl)fl.textContent=fitLevel;
+    if(bp)bp.style.width=Math.min(bmi/40*100,100)+'%';if(wp)wp.style.width=Math.min(water/4*100,100)+'%';if(fp)fp.style.width=score+'%';
+    animateValue(be,0,bmi,'',700);animateValue(ce,0,tdee,'',800);animateValue(we,0,water,'L',700);animateValue(fe,0,score,'',600);
+    setTimeout(function(){if(bp)bp.classList.remove('shimmer');if(wp)wp.classList.remove('shimmer');if(fp)fp.classList.remove('shimmer')},1400);
+    var rl=$('riskLevel');if(rl){var rc=riskLvl==='High Risk'?'#ef4444':riskLvl==='Medium Risk'?'#f59e0b':'#10b981';rl.textContent=riskLvl;rl.style.color=rc;rl.style.border='2px solid '+rc;rl.style.background=riskLvl==='Low Risk'?'rgba(16,185,129,0.1)':riskLvl==='Medium Risk'?'rgba(245,158,11,0.1)':'rgba(239,68,68,0.1)')}
+    var rm=$('riskMessage');if(rm)rm.textContent=riskMsg;
+    var rp=$('riskProgress');if(rp)rp.style.width=score+'%';
+    generatePlan({age:o.age,height:o.height,weight:o.weight,gender:o.gender,activity:o.activity,diet:o.diet,menstruation:o.menstruation,problem:o.problem,bmi:bmi,tdee:tdee});
+    renderChart({bmi:bmi,tdee:tdee,water:water,score:score,age:o.age});
+    renderGoals({bmi:bmi,tdee:tdee,water:water,waterRaw:water,score:score,age:o.age});
+    setTimeout(function(){var db=$('dashboard');if(db)db.scrollIntoView({behavior:'smooth',block:'start'})},200);
+  }
   analyzeBtn && analyzeBtn.addEventListener('click', analyze);
 
   function getInputs() {
@@ -301,7 +332,93 @@
     }).join('');
   }
 
-  // ===== PLAN TABS =====
+  // ===== EXERCISE GIF MAP =====
+  var gifMap = {'push ups':'5NW0ZOZT2LyY9YPay4','push-ups':'5NW0ZOZT2LyY9YPay4','press ups':'5NW0ZOZT2LyY9YPay4','squats':'r0WOepedKqxNjS3zM0','lunges':'xT0xeD7gan8YgJWbwk','plank':'CLjw2mHysNEYw','side plank':'PmXe3jP2CHqJyFwEHm','burpees':'Fm0PJWfYb7yGQ','jumping jacks':'Io0dYFnSJbQ9S','high knees':'z6kYryKTMm8Dq','mountain climbers':'3og0IMRZ5wWOzGH4NW','crunches':'TMNCtgJGJnV8k','bicycle crunches':'bSCV41t10bXjO','leg raises':'1FsjYEOIEXQTosCu9T','glute bridges':'7EeEk7QIUVKbV5RWzn','diamond push ups':'srOogZJmCOFkymR1jo','tricep dips':'562vRn4PXFkm8EcJwb','chair dips':'ojAEX7tsnRTsg6EY1O','walking':'idLmS5DVmSPh6wHg64','brisk walking':'idLmS5DVmSPh6wHg64','arm circles':'z0JWDAyS0hJsjrDxuV','calf raises':'XEDNpGzZ8IXhBRqfwS','jump squats':'xUA7b7eul73i4xfzP2','cat cow':'fXtFCiwt9JNEfPqTzf','childs pose':'MZpWm4Z9XQWbwVMGky','seated twist':'heSg6nPS3UHVzWGuxP','butterfly stretch':'Ld6CUI3vZMYibdvD8t','yoga':'7rUbZWomwdhWmQVWoY','stretching':'7rUbZWomwdhWmQVWoY','cobra stretch':'Z3uwVAFDiEAcWMP7vw','bird dog':'3o7TKUtNvbq1puN65W','tuck jumps':'3o6EhPQ79zytoRdB9m','box jumps':'1cwHYKZHaqdkDCexmM','flutter kicks':'cI9PSDuenPWiAgSKeN','donkey kicks':'zsiBpbozNyn2RihxzW','step ups':'GCfe8FEQQ3akJ5REmL','wall sit':'wiRXDJkS5rcMQ2oSJG','incline push ups':'MZuko9ynczcnmms70g','split squats':'3mgBYwj3yju1Uqd4R6'};
+  function normalizeKey(s){return s.toLowerCase().replace(/[^a-z0-9\s]/g,'').trim().replace(/\s+/g,' ')}
+  function exerciseGif(exerciseName){var k=normalizeKey(exerciseName.replace(/\(.*?\)/g,''));if(gifMap[k])return gifMap[k];var kf=k.replace(/\s+/g,'');for(var x in gifMap){var m=normalizeKey(x).replace(/\s+/g,'');if(kf.indexOf(m)!==-1||m.indexOf(kf)!==-1)return gifMap[x]}var w=k.split(' ');for(var i=0;i<w.length;i++){if(gifMap[w[i]])return gifMap[w[i]]}return'3o7btMPzJrsdyWVHeo'}
+  function renderWorkoutItem(text){var id=exerciseGif(text);var s='https://media.giphy.com/media/'+id+'/giphy.gif';return '<div class="workout-item"><div class="workout-gif-wrap"><img class="workout-gif" src="'+s+'" alt="'+text.replace(/"/g,'&quot;')+'" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=\\\\\\"workout-gif-placeholder\\\\\\"><i class=\\\\\\"fas fa-dumbbell\\\\\\"></i></div>\'"></div><span class="workout-text">'+text+'</span></div>'}
+
+  // ===== BADGE HELPER =====
+  function unlockBadge(key){if(userBadges.indexOf(key)===-1){userBadges.push(key);safeSet('fithomey_badges',JSON.stringify(userBadges));renderBadges()}}
+
+  // ===== COUNTER ANIMATION =====
+  function animateValue(el,start,end,suffix,duration){if(!el)return;suffix=suffix||'';duration=duration||800;var st=null;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/duration,1);var e=1-Math.pow(1-p,3);var v=start+(end-start)*e;el.textContent=(end%1===0?Math.round(v):v.toFixed(1))+suffix;if(p<1)requestAnimationFrame(step)}requestAnimationFrame(step)}
+
+  // ===== WORKOUT POOLS =====
+  var homePools = {
+    general:['Push-ups (3x12)','Squats (3x15)','Lunges (3x10 each)','Plank (3x30s)','Glute Bridges (3x15)','Mountain Climbers (3x20s)','Jumping Jacks (3x30)','Bird Dog (3x10 each)','Leg Raises (3x12)','Chair Dips (3x10)'],
+    weight_loss:['Jump Squats (3x12)','Burpees (3x10)','High Knees (3x30s)','Mountain Climbers (3x30s)','Plank Jacks (3x15)','Lunges (3x12 each)','Tuck Jumps (3x8)','Bicycle Crunches (3x15 each)','Flutter Kicks (3x20s)','Box Jumps (3x8)']
+  };
+  var gymPools = {
+    general:['Bench Press (3x10)','Squat (3x10)','Deadlift (3x8)','Lat Pulldown (3x10)','Overhead Press (3x8)','Barbell Row (3x10)','Leg Press (3x12)','Tricep Pushdown (3x10)','Bicep Curl (3x10)','Cable Face Pull (3x12)'],
+    weight_loss:['Treadmill HIIT (20min)','Leg Press (3x15)','Seated Cable Row (3x12)','Kettlebell Swing (3x15)','Rowing Machine (15min)','Lat Pulldown (3x12)','Cable Crunch (3x15)','Jump Squats on Box (3x10)','Elliptical (15min)','Plank (3x45s)']
+  };
+  var mealsV = [{name:'Breakfast',desc:'Oatmeal + berries + walnuts + almond milk'},{name:'Snack',desc:'Apple + green tea'},{name:'Lunch',desc:'Quinoa + chickpea + leafy greens + lemon'},{name:'Snack',desc:'Carrot sticks + hummus'},{name:'Dinner',desc:'Grilled tofu + broccoli + brown rice'}];
+  var mealsNV = [{name:'Breakfast',desc:'Eggs (2) + whole grain toast + banana + milk'},{name:'Snack',desc:'Greek yogurt + mixed nuts'},{name:'Lunch',desc:'Grilled chicken breast + quinoa + spinach'},{name:'Snack',desc:'Smoothie (milk + banana + protein)'},{name:'Dinner',desc:'Grilled salmon + sweet potato + steamed broccoli'}];
+
+  // ===== PLAN GENERATION =====
+  function generatePlan(d){
+    var prob = d.problem||'general';
+    var probKey = homePools[prob]?prob:'general';
+    var home = homePools[probKey]||homePools.general;
+    var gym = gymPools[probKey]||gymPools.general;
+    var shuffled = home.slice().sort(function(){return Math.random()-0.5}).slice(0,5);
+    document.getElementById('homeWorkoutList').innerHTML = shuffled.map(renderWorkoutItem).join('');
+    var gymShuf = gym.slice().sort(function(){return Math.random()-0.5}).slice(0,5);
+    document.getElementById('gymWorkoutList').innerHTML = gymShuf.map(renderWorkoutItem).join('');
+
+    var isVeg = d.diet==='veg';var isBoth = d.diet==='both';
+    var meals = isBoth?mealsV.concat(mealsNV).slice(0,5):isVeg?mealsV:mealsNV;
+    var mealHtml = '<div class="meal-grid">'+meals.map(function(m){return '<div class="meal-item"><div class="meal-name">'+m.name+'</div><div class="meal-desc">'+m.desc+'</div></div>'}).join('')+'</div>';
+    document.getElementById('mealPlan').innerHTML = mealHtml;
+    var db=$('dietBadge');if(db)db.textContent=isVeg?'🌱 Vegetarian':isBoth?'🍽️ Mixed':isVeg?'🌱 Vegetarian':'🥩 Non-Vegetarian';
+    var eat = isVeg?['Oats & Quinoa','Lentils & Chickpeas','Leafy Greens','Nuts & Seeds','Fruits','Tofu & Paneer','Brown Rice','Whole Grain Bread']:['Lean Chicken','Eggs','Fish & Salmon','Greek Yogurt','Leafy Greens','Nuts & Seeds','Quinoa & Brown Rice','Olive Oil'];
+    var avoid = ['Processed Foods','Sugary Drinks','Trans Fats','Excess Salt','Fried Foods','Refined Sugar','White Bread','Alcohol'];
+    $('foodsEat').innerHTML = eat.map(function(f){return '<span class="food-tag">'+f+'</span>'}).join('');
+    $('foodsAvoid').innerHTML = avoid.map(function(f){return '<span class="food-tag">'+f+'</span>'}).join('');
+
+    var isMenst = d.menstruation||false;
+    var isSenior = d.age>=60;var isYoung = d.age<18;var isActive = d.activity==='high';var isOverweight = d.bmi>=25;var isUnderweight = d.bmi<18.5;
+    var bedH,bedM,wakeH,wakeM;
+    if(isMenst){bedH=21;bedM=30;wakeH=5;wakeM=30}else if(isSenior){bedH=21;bedM=0;wakeH=5;wakeM=0}else if(isYoung){bedH=21;bedM=0;wakeH=6;wakeM=0}else if(isActive){bedH=21;bedM=30;wakeH=5;wakeM=30}else if(isOverweight){bedH=22;bedM=0;wakeH=6;wakeM=0}else{bedH=22;bedM=30;wakeH=6;wakeM=30}
+    var bfmt = function(h,m){var a=h>=12?'PM':'AM';var h12=h%12||12;return h12+':'+(m<10?'0':'')+m+' '+a};
+    $('sleepSchedule').innerHTML = [
+      {label:'Bedtime',time:bfmt(bedH,bedM)},
+      {label:'Wake Up',time:bfmt(wakeH,wakeM)},
+      {label:'Duration',time:(wakeH<bedH?24-bedH+wakeH:wakeH-bedH)+' hours'},
+      {label:'Nap (optional)',time:isSenior||isYoung?'30-45 min':'20 min'}
+    ].map(function(s){return '<div class="sleep-item"><span>'+s.label+'</span><span class="sleep-time">'+s.time+'</span></div>'}).join('');
+
+    var habits = isSenior?['Walk 30 min daily','Stretch 10 min mornings','Drink 2L water','Calcium & Vitamin D','Sleep by 9 PM','Social activity','Light strength 3x/week']:
+      isYoung?['Stay active 5x/week','Eat enough protein','Drink milk daily','Limit screen time','Sleep 8-9 hours','Outdoor sports','Drink 2L water']:
+      isActive?['Train 5-6 days/week','1.6-2g protein per kg','Stretch 10 min post','Meditate 10 min','Track macros','Rest days seriously','Hydrate throughout day']:
+      isOverweight?['Walk 10,000 steps','Drink 8-10 glasses water','No sugar after 6 PM','30 min exercise daily','Eat slowly','Track calories','Sleep by 10 PM']:
+      isUnderweight?['Eat 5-6 meals/day','Calorie-dense foods','Protein with every meal','Light exercise 3x/week','Sleep 8h','Limit cardio','Track weight weekly']:
+      ['Exercise 4x/week','Protein with every meal','8,000 steps daily','Drink 8 glasses water','Sleep 7-8 hours','Limit screen time','Meal prep Sundays'];
+    $('habitsList').innerHTML = habits.map(function(h){return '<li>'+h+'</li>'}).join('');
+  }
+
+  // ===== CHART RENDER =====
+  function renderChart(d){
+    var c=$('chartContainer');if(!c)return;
+    var labels = ['BMI','Calories','Water','Score'];var maxVals = [40,d.tdee*1.3,4,100];
+    var vals = [d.bmi,d.tdee,d.water,d.score];var colors = ['var(--green)','var(--blue)','var(--yellow)','var(--purple)'];
+    var bars = '';for(var i=0;i<labels.length;i++){var pct=Math.min(vals[i]/maxVals[i]*100,100);bars+='<div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:50px;height:130px;background:var(--bg-secondary);border-radius:8px;border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column-reverse"><div style="height:'+pct+'%;background:linear-gradient(180deg,'+colors[i]+',transparent);border-radius:6px;transition:height 0.8s cubic-bezier(0.4,0,0.2,1);animation:fadeInUp 0.5s both;animation-delay:'+(i*0.1)+'s"></div></div><span style="font-size:0.7rem;font-weight:600;color:var(--text-secondary)">'+labels[i]+'</span><span style="font-size:0.7rem;font-weight:700;color:'+colors[i]+'">'+(i===2?d.water+'L':Math.round(vals[i]))+'</span></div>'}
+    c.innerHTML = '<div style="display:flex;justify-content:space-around;gap:12px;padding:20px 0">'+bars+'</div>';
+  }
+
+  // ===== GOALS RENDER =====
+  function renderGoals(d){
+    var g=$('goalsGrid');if(!g)return;
+    var targets = [
+      {label:'BMI',curr:d.bmi.toFixed(1),target:d.bmi<18.5?'18.5-24.9':d.bmi<25?'Maintain':d.bmi<30?'18.5-24.9':'18.5-24.9',status:d.bmi>=18.5&&d.bmi<25?'good':d.bmi<18.5?'warn':'bad'},
+      {label:'Daily Calories',curr:d.tdee+' cal',target:'Maintain',status:'good'},
+      {label:'Water Intake',curr:d.waterRaw+'L',target:'2.5-3.5L',status:d.waterRaw>=2.5?'good':'warn'},
+      {label:'Fitness Score',curr:d.score+'/100',target:'60+',status:d.score>=60?'good':d.score>=40?'warn':'bad'},
+      {label:'Age Group',curr:d.age+' yrs',target:d.age<60?'< 60':'60+',status:'good'}
+    ];
+    g.innerHTML = targets.map(function(t){return '<div class="goal-row"><div class="goal-label"><i class="fas fa-bullseye"></i>'+t.label+'</div><div class="goal-current">'+t.curr+'</div><div class="goal-target">'+t.target+'</div><div class="goal-status '+t.status+'">'+({good:'On Track',warn:'Needs Work',bad:'Attention'}[t.status]||'Good')+'</div></div>'}).join('');
+  }
   document.querySelectorAll('.plan-tab').forEach(function(tab) {
     tab.addEventListener('click', function() {
       document.querySelectorAll('.plan-tab').forEach(function(t) { t.classList.remove('active'); });
@@ -1209,22 +1326,6 @@
   }
 
   // ===== COUNTER ANIMATION UTILITY =====
-  function animateValue(el, start, end, suffix, duration) {
-    if (!el) return;
-    suffix = suffix || '';
-    duration = duration || 800;
-    var startTime = null;
-    function step(timestamp) {
-      if (!startTime) startTime = timestamp;
-      var progress = Math.min((timestamp - startTime) / duration, 1);
-      var eased = 1 - Math.pow(1 - progress, 3);
-      var current = start + (end - start) * eased;
-      el.textContent = (end % 1 === 0 ? Math.round(current) : current.toFixed(1)) + suffix;
-      if (progress < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-
   function animateCounters(bmiVal, calVal, watVal, fitVal, bmi, tdee, water, score) {
     setTimeout(function() {
       animateValue(bmiVal, 0, bmi, '', 700);
@@ -1235,3 +1336,4 @@
   }
 
 })();
+
